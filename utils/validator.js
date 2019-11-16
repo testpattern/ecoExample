@@ -1,5 +1,5 @@
-function validate(values) {
-// todo
+function isNullOrEmpty(value) {
+  return value == null || value.length <= 0;
 }
 
-module.exports = validate;
+module.exports = isNullOrEmpty;
