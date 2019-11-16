@@ -110,3 +110,6 @@ dist
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
+
+# don't want my config public...
+config.json
