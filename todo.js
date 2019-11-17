@@ -1,11 +1,9 @@
 // implement ...
+//  Insert (POST/PUT) endpoint
+//    db transaction in code or stored procedure?
+//    I think sp 
 //  integration tests
-//  rest endpoints: Insert (POST/PUT), Present (GET)
-//    promises
-//  validation
-//  db transactions
-//  error handling
+//  README (including software prerequisites)
 // consider
 //  postman test collection
-//  logging
 //  aks and docker manifests

@@ -8,7 +8,10 @@
   },
   "jest": {
     "collectCoverage": true,
-    "reporters": ["default", "./test/customReporter.js"]
+    "reporters": [
+      "default",
+      "./test/customReporter.js"
+    ]
   },
   "dependencies": {
     "async": "^3.1.0",
@@ -21,6 +24,8 @@
     "tedious": "^6.6.2"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "jest": "^24.9.0",
     "sinon": "^7.5.0"
   }

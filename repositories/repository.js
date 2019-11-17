@@ -1,5 +1,5 @@
 var isNullOrEmpty = require('../utils/validator');
-var repository = require('./tediousRepository');
+var dbRepository = require('./tediousRepository');
 TYPES = require('tedious').TYPES
 
 function getMeterReadings(customerId, serialNumber) {
@@ -11,7 +11,7 @@ function getMeterReadings(customerId, serialNumber) {
 
   return new Promise((resolve, reject) => {
 
-    var query = "select * from CustomerMeterReadingsData where CustomerId = @customerId and SerialNumber = @serialNumber";
+    var query = "select * from dbo.CustomerMeterReadingsView where CustomerId = @customerId and SerialNumber = @serialNumber";
 
     var params = [{
       name: 'customerId',
@@ -23,7 +23,7 @@ function getMeterReadings(customerId, serialNumber) {
       value: serialNumber
     }];
 
-    repository.executeQuery(query, params)
+    dbRepository.executeQuery(query, params)
       .then(r => {
         resolve(r);
       })
@@ -33,27 +33,22 @@ function getMeterReadings(customerId, serialNumber) {
   });
 }
 
-function insertMeterReading() {
-  // TODO
-  // request = new Request("INSERT SalesLT.Product (Name, ProductNumber, StandardCost, ListPrice, SellStartDate) OUTPUT INSERTED.ProductID VALUES (@Name, @Number, @Cost, @Price, CURRENT_TIMESTAMP);", function (err) {
-  //   if (err) {
-  //     console.log(err);
-  //   }
-  // });
-  // request.addParameter('Name', TYPES.NVarChar, 'SQL Server Express 2014');
-  // request.addParameter('Number', TYPES.NVarChar, 'SQLEXPRESS2014');
-  // request.addParameter('Cost', TYPES.Int, 11);
-  // request.addParameter('Price', TYPES.Int, 11);
-  // request.on('row', function (columns) {
-  //   columns.forEach(function (column) {
-  //     if (column.value === null) {
-  //       console.log('NULL');
-  //     } else {
-  //       console.log("Product id of inserted item is " + column.value);
-  //     }
-  //   });
-  // });
-  // connection.execSql(request);
+function insertMeterReading(values) {
+
+  if (values == null
+    || values.length < 1) {
+    return Promise.reject({ statusCode: 400, errorMessage: 'Bad param, pass an array' });
+  }
+
+  return new Promise((resolve, reject) => {
+    dbRepository.execInsertMeterReading(values)
+      .then(r => {
+        resolve(r);
+      })
+      .catch(e => {
+        reject(e);
+      });
+  });
 }
 
 module.exports = { getMeterReadings, insertMeterReading };
