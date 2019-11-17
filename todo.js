@@ -1,8 +1,7 @@
 // implement ...
 //  Insert (POST/PUT) endpoint
-//    db transaction in code or stored procedure?
-//    I think sp 
-//  integration tests
+//    clean up use of tediousRepository
+//  increase code coverage
 //  README (including software prerequisites)
 // consider
 //  postman test collection
