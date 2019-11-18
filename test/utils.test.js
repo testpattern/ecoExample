@@ -6,10 +6,10 @@ var validDbJson1 = {
   SerialNumber: "4726372548",
   Type: "mpxn",
   MeterPointId: "14582750",
-  Timing: "NIGHT",
   RegisterId: "387374",
+  ReadingDate: "2017-11-20T16:14:33.000Z",
+  Timing: "NIGHT",
   Value: "2299",
-  ReadingDate: "2017-11-20T16:14:33.000Z"
 };
 
 var validDbJson2 = {
@@ -17,11 +17,24 @@ var validDbJson2 = {
   SerialNumber: "4726372548",
   Type: "mpxn",
   MeterPointId: "14582750",
-  Timing: "ANYTIME",
   RegisterId: "387374",
-  Value: "2009",
-  ReadingDate: "2017-11-20T16:14:33.000Z"
+  ReadingDate: "2017-11-20T16:14:33.000Z",
+  Timing: "ANYTIME",
+  Value: "2009"
 };
+
+var jsonToDbResult = {
+  CustomerId: "customerId2",
+  SerialNumber: "4726372548",
+  Type: "MPXN",
+  MeterPointId: "14582750",
+  RegisterId: "387374",
+  Timing1: "NIGHT",
+  Value1: "2299",
+  Timing2: "ANYTIME",
+  Value2: "2009",
+  ReadingDate: new Date("2017-11-20T16:14:33.000Z")
+}
 
 var validJson = {
   "customerId": "customerId2",
@@ -30,16 +43,6 @@ var validJson = {
   "read": [
     { "type": "NIGHT", "registerId": "387374", "value": "2299" },
     { "type": "ANYTIME", "registerId": "387374", "value": "2009" }
-  ],
-  "readDate": "2017-11-20T16:14:33.000Z"
-};
-
-var validJsonSingle = {
-  "customerId": "customerId2",
-  "serialNumber": "4726372548",
-  "mpxn": "14582750",
-  "read": [
-    { "type": "NIGHT", "registerId": "387374", "value": "2299" }
   ],
   "readDate": "2017-11-20T16:14:33.000Z"
 };
@@ -75,17 +78,11 @@ describe('Utils...', () => {
         expect(result).toStrictEqual({});
       });
 
-      test('jsonToDb maps single result when arg can be formatted', () => {
-        let result = mapper.jsonToDb(validJson);
-        expect(result).toStrictEqual([validDbJson1, validDbJson2]);
-      });
-
       test('jsonToDb maps result when arg can be formatted', () => {
-        let result = mapper.jsonToDb(validJsonSingle);
-        expect(result).toStrictEqual([validDbJson1]);
+        let result = mapper.jsonToDb(validJson);
+        expect(result).toStrictEqual(jsonToDbResult);
       });
     })
-
   });
 
   describe('Validator...', () => {

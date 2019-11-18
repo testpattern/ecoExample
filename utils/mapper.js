@@ -9,7 +9,7 @@ function dbToJson(dbItems) {
     result.customerId = item.CustomerId;
     result.serialNumber = item.SerialNumber;
     result.readDate = new Date(item.ReadingDate).toISOString();
-    result[item.Type.toLowerCase()] = item.MeterPointId;
+    result[item.Type.toLowerCase()] = item.MeterPointId.toString();
     result.read.push({
       type: item.Timing,
       registerId: item.RegisterId,

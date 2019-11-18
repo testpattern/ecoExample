@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "0430cd24-7e13-4c9e-bb8e-6a99fe0c9556",
+		"name": "EcoCodeExercise",
+		"description": "Rest API collection for Ecotricity Code Exercise",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/meter-read/customerId8/3726372589",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customerId\": \"3726372549\",\r\n    \"serialNumber\": \"27263927192\",\r\n    \"mpxn\": \"14582751\",\r\n    \"read\": [\r\n        {\"type\": \"ANYTIME\", \"registerId\": \"387375\", \"value\": \"2729\"},\r\n        {\"type\": \"NIGHT\", \"registerId\": \"387375\", \"value\": \"2892\"}\r\n    ],\r\n    \"readDate\": \"2017-11-20T16:19:48+00:00Z\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/meter-read/customerId8/3726372589",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"meter-read",
+						"customerId8",
+						"3726372589"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/meter-read",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customerId\": \"customerId9\",\r\n    \"serialNumber\": \"3726372590\",\r\n    \"mpxn\": \"14582765\",\r\n    \"read\": [\r\n        {\"type\": \"ANYTIME\", \"registerId\": \"387376\", \"value\": \"2739\"},\r\n        {\"type\": \"NIGHT\", \"registerId\": \"387376\", \"value\": \"2832\"}\r\n    ],\r\n    \"readDate\": \"2017-11-25T16:19:48+00:00Z\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/meter-read",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"meter-read"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
