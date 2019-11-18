@@ -30,7 +30,6 @@ router.post('/', function (req, res, next) {
 
   repository.insertMeterReading(mappedJson)
     .then(r => {
-      console.log('ok');
       res.status(200).send(r);
     }).catch(e => {
       res.status(500).send(e);
