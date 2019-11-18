@@ -20,6 +20,7 @@ router.get('/:customerId/:serialNumber', function (req, res, next) {
         res.status(200).send(r);
       }
     }).catch(e => {
+      console.error(e);
       res.status(e.statusCode).send(e.errorMessage);
     });
 });
