@@ -6,7 +6,7 @@ var isNullOrEmpty = require('../utils/validator');
 
 isConnected = false;
 connection = new Connection(config);
- 
+
 connection.on('connect', function (err) {
   if (err) {
     console.error(err);
@@ -19,6 +19,7 @@ connection.on('connect', function (err) {
     isConnected = true;
   }
 });
+
 
 function endConnection() {
   console.log('Connection closed');

@@ -1,20 +1,26 @@
-var repository = require('../repositories/repository');
-var tediousRepository = require('../repositories/tediousRepository');
+var Repository = require('../repositories/repository').Repository;
+var mockTediousRepository = require('./mocks/mockTediousRepository');
 var sinon = require('sinon');
 
 describe('Repository...', () => {
+
 
   describe('executeQuery...', () => {
 
     afterEach(() => {
       // not every test needs this, so try-catch for convenience
       try {
-        tediousRepository.executeQuery.restore();
+        mockTediousRepository.executeQuery.restore();
       }
       catch { }
     });
 
     test('Returns error when customerId is null or empty', () => {
+
+      sinon.stub(mockTediousRepository, 'executeQuery')
+        .returns(Promise.reject({ error: 'Error' }));
+
+      var repository = new Repository(mockTediousRepository);
 
       repository.getMeterReadings(null, 'serial')
         .then(r => {
@@ -27,7 +33,10 @@ describe('Repository...', () => {
     });
 
     test('Returns error when serialNumber is null or empty', () => {
+      sinon.stub(mockTediousRepository, 'executeQuery')
+        .returns(Promise.reject({ error: 'Error' }));
 
+      var repository = new Repository(mockTediousRepository);
       repository.getMeterReadings('customerId')
         .then(r => {
           expect.fail;
@@ -39,6 +48,10 @@ describe('Repository...', () => {
     });
 
     test('Returns error when customerId and serialNumber null or empty', () => {
+      sinon.stub(mockTediousRepository, 'executeQuery')
+        .returns(Promise.reject({ error: 'Error' }));
+
+      var repository = new Repository(mockTediousRepository);
       repository.getMeterReadings(null, null)
         .then(r => {
           expect.fail;
@@ -50,10 +63,10 @@ describe('Repository...', () => {
     });
 
     test('Rejects when underlying repository rejects', () => {
-
-      sinon.stub(tediousRepository, 'executeQuery')
+      sinon.stub(mockTediousRepository, 'executeQuery')
         .returns(Promise.reject({ error: 'Error' }));
 
+      var repository = new Repository(mockTediousRepository);
       repository.getMeterReadings('c', 's')
         .then(r => {
           expect.fail;
@@ -64,8 +77,11 @@ describe('Repository...', () => {
     });
 
     test('Resolves when underlying repository resolves', () => {
-      sinon.stub(tediousRepository, 'executeQuery')
+
+      sinon.stub(mockTediousRepository, 'executeQuery')
         .returns(Promise.resolve({ results: [{ item: 'Item' }] }));
+
+      var repository = new Repository(mockTediousRepository);
 
       repository.getMeterReadings('c', 's')
         .then(r => {
@@ -82,12 +98,17 @@ describe('Repository...', () => {
     afterEach(() => {
       // not every test needs this, so try-catch for convenience
       try {
-        tediousRepository.execInsertMeterReading.restore();
+        mockTediousRepository.execInsertMeterReading.restore();
       }
       catch { }
     });
 
     test('Returns error when item is null', () => {
+
+      sinon.stub(mockTediousRepository, 'execInsertMeterReading')
+        .returns(Promise.reject({ error: 'Error' }));
+
+      var repository = new Repository(mockTediousRepository);
 
       repository.insertMeterReading(null)
         .then(r => {
@@ -101,8 +122,10 @@ describe('Repository...', () => {
 
     test('Rejects when underlying repository rejects', () => {
 
-      sinon.stub(tediousRepository, 'execInsertMeterReading')
+      sinon.stub(mockTediousRepository, 'execInsertMeterReading')
         .returns(Promise.reject({ error: 'Error' }));
+
+      var repository = new Repository(mockTediousRepository);
 
       repository.insertMeterReading({ 'name': 'value' })
         .then(r => {
@@ -110,17 +133,20 @@ describe('Repository...', () => {
         }).catch(e => {
           expect(e).not.toBe(null);
           expect(e.error).toBe('Error');
-        })
+        });
     });
 
     test('Resolves when underlying repository resolves', () => {
-      sinon.stub(tediousRepository, 'execInsertMeterReading')
+
+      sinon.stub(mockTediousRepository, 'execInsertMeterReading')
         .returns(Promise.resolve({ results: [{ item: 'Item' }] }));
+
+      var repository = new Repository(mockTediousRepository);
 
       repository.insertMeterReading({ 'name': 'value' })
         .then(r => {
           expect(r).not.toBe(null);
-          expect(r.results).not.toBe(null);
+          expect(r.results.length).toBe(1);
         }).catch(e => {
           expect.fail;
         });

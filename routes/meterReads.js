@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var repository = require('../repositories/repository');
+var Repository = require('../repositories/repository').Repository;
+var dbRepository = require('../repositories/tediousRepository');
 var mapper = require('../utils/mapper');
+
+var repository = new Repository(dbRepository);
 
 router.get('/:customerId/:serialNumber', function (req, res, next) {
 
