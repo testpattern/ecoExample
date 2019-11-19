@@ -13,9 +13,8 @@ Project is written in NodeJS using Express and has an Azure-hosted cloud SQL Dat
 You can [clone the repository from GitHub](https://github.com/testpattern/ecoExample.git). 
 
 # Run
-From the command line, run: `npm install`, then: `npm start`
-
+* Copy the separately supplied `config.json` file into the root of the application (next to `app.js`).
+* From the command line, run: `npm install`, then: `npm start`
 
 # Test
-From the command line, run:
-`npm test`
+From the command line, run: `npm test`.
