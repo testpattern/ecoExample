@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:3000/meter-read/customerId8/3726372589",
+			"name": "Get Meter Reading",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -31,13 +31,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/meter-read/customerId8/3726372589",
+					"raw": "http://localhost:3000/v1/meter-read/customerId8/3726372589",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"v1",
 						"meter-read",
 						"customerId8",
 						"3726372589"
@@ -47,15 +48,15 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:3000/meter-read",
+			"name": "Post Meter Reading",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					}
 				],
 				"body": {
@@ -68,13 +69,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/meter-read",
+					"raw": "http://localhost:3000/v1/meter-read",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"v1",
 						"meter-read"
 					]
 				}

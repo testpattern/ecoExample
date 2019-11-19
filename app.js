@@ -3,10 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-var config = require('./config.json');
 var indexRouter = require('./routes/index');
 var meterReadsRouter = require('./routes/meterReads');
+var Repository = require('./repositories/repository');
 
 var app = express();
 
@@ -23,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 console.log('Hello from Exercise', new Date().toJSON());
 
 app.use('/', indexRouter);
-app.use('/meter-read', meterReadsRouter);
+app.use('/v1/meter-read', meterReadsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
