@@ -14,7 +14,7 @@
     ],
     "reporters": [
       "default",
-      "./test/customReporter.js"
+      "./test/utils/customReporter.js"
     ]
   },
   "dependencies": {
