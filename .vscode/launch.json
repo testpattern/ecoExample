@@ -13,7 +13,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Jest Tests",
+      "name": "Debug Tests (Jest)",
       "program": "${workspaceRoot}\\node_modules\\jest\\bin\\jest.js",
       "args": [
         "-i"

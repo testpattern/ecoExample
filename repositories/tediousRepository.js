@@ -6,7 +6,7 @@ var isNullOrEmpty = require('../utils/validator');
 
 isConnected = false;
 connection = new Connection(config);
-
+ 
 connection.on('connect', function (err) {
   if (err) {
     console.error(err);
