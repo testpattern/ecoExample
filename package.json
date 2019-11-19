@@ -8,6 +8,10 @@
   },
   "jest": {
     "collectCoverage": true,
+    "collectCoverageFrom": [
+      "repositories/**",
+      "utils/**"
+    ],
     "reporters": [
       "default",
       "./test/customReporter.js"
