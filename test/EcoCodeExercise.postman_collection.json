@@ -7,6 +7,25 @@
 	},
 	"item": [
 		{
+			"name": "Get Index",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get Meter Reading",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
