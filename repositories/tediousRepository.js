@@ -102,8 +102,21 @@ function execInsertMeterReading(item) {
   });
 }
 
+
+function getConnected() {
+  return isConnected;
+}
+
+function setConnected(value) {
+  isConnected = value;
+}
+
 module.exports = {
-  endConnection
+  __testHelper: {
+    setConnected
+    , getConnected
+  }
+  , endConnection
   , executeQuery
   , execInsertMeterReading
 }
